@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show seller</title>
+</head>
+<body>
+
+<p th:text="${seller.getName() + ', ' + seller.getPassword()}">VALUE</p>
+<p th:text="${'Email: ' + seller.getEmail()}">VALUE</p>
+<p th:text="${seller.getId()}">VALUE</p>
+
+<a th:href="@{/seller/{id}/edit(id=${seller.getId()})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/seller/{id}(id=${seller.getId()})}">
+  <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>
