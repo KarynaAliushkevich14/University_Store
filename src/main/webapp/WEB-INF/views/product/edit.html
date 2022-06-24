@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update product</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/product/{id}(id=${product.getId()})}" th:object="${product}">
+  <label for="title">Enter Title: </label>
+  <input type="text" th:field="*{title}" id="title"/>
+  <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
+  <br/>
+
+  <label for="description">Enter Description: </label>
+  <input type="text" th:field="*{description}" id="description"/>
+  <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+  <br/>
+
+  <input type="submit" value="Update!"/>
+</form>
+
+
+</body>
+</html>

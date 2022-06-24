@@ -7,17 +7,19 @@ public class Product {
     @NotEmpty(message = "Title should not be empty")
     private String title;
     @NotEmpty(message = "Description should not be empty")
-    private String opis;
+    private String description;
     private int id_order;
 
-    public Product(int id, String title, String opis, int id_order) {
+
+    public Product(int id, String title, String description, int id_order) {
         this.id = id;
         this.title = title;
-        this.opis = opis;
-        this.id_order = id_order;
+        this.description=description;
+        this.id_order=id_order;
     }
 
-    public Product (){};
+    public Product() {
+    }
 
     public int getId() {
         return id;
@@ -35,12 +37,12 @@ public class Product {
         this.title = title;
     }
 
-    public String getOpis() {
-        return opis;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOpis(String opis) {
-        this.opis = opis;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId_order() {

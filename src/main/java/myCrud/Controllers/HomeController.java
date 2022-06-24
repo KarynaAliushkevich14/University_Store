@@ -27,7 +27,7 @@ public class HomeController {
     }
 
     //post and wyciag danych z pól
-    @PostMapping("OK")
+    @PostMapping("/ok")
     public String homePost(@ModelAttribute("person") Person person){
         //System.out.println(person.getEmail());
         // System.out.println(person.getPassword());
@@ -38,7 +38,7 @@ public class HomeController {
 
        try{
       if(person.getEmail().equals(sellerPerson.getEmail()) ) {
-          return "sellerAfterLog";
+          return "redirect:/product/allSeller";
       }
        }catch (Exception e){
            System.out.println("SellerPerson is null");
@@ -46,7 +46,7 @@ public class HomeController {
 
         try{
             if(person.getEmail().equals(customerPerson.getEmail()) ) {
-                return "customerAfterLog";
+                return "redirect:/product/allCustomer";
             }
         }catch (Exception e){
             System.out.println("SellerPerson is null");

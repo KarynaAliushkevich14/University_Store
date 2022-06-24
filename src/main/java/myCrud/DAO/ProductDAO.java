@@ -1,8 +1,7 @@
 package myCrud.DAO;
 
-import myCrud.Model.Customer;
 import myCrud.Model.Product;
-import org.springframework.beans.factory.annotation.Autowired;
+import myCrud.Model.Seller;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -14,29 +13,28 @@ public class ProductDAO {
 
     private static JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public ProductDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //show all products
-    public List<Product> all(){
-        return jdbcTemplate.query("SELECT * FROM product", new BeanPropertyRowMapper<>(Product.class));
+    //show all sellers
+    public List<Product> all() {
+        return jdbcTemplate.query("SELECT id, title, description FROM product", new BeanPropertyRowMapper<>(Product.class));
     }
 
-    //show product by id
-    public Product showById(int id){
-        return jdbcTemplate.query("SELECT * FROM product WHERE id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Product.class)).stream().findAny().orElse(null);
+    //show seller by id
+    public Product showById(int id) {
+        return jdbcTemplate.query("SELECT id,title,description FROM product WHERE id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Product.class)).stream().findAny().orElse(null);
     }
 
     //save
-    public void save(Product product){
-        jdbcTemplate.update("INSERT INTO product (title, opis) VALUES (?,?)", product.getTitle(), product.getOpis());
+    public void save(Product product) {
+        jdbcTemplate.update("INSERT INTO product (title, description) VALUES (?,?)", product.getTitle(), product.getDescription());
     }
 
     //update
-    public void update(Product updatedProduct, int id){
-        jdbcTemplate.update("UPDATE product SET title =?, opis=? WHERE id =?", updatedProduct.getTitle(), updatedProduct.getOpis(), id);
+    public void update(Product updatedproduct, int id) {
+        jdbcTemplate.update("UPDATE product SET title =?, description=? WHERE id =?", updatedproduct.getTitle(), updatedproduct.getDescription(), id);
     }
 
     //delete

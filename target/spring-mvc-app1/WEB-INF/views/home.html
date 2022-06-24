@@ -10,7 +10,7 @@
 
 <div class = "container">
     <h1 style="color:midnightblue">User Login Form</h1>
-    <form class="col-5" th:action="@{/OK}" th:object="${person}" method="POST">
+    <form class="col-5" th:action="@{/ok}" th:object="${person}" method="POST">
 
         <label><h3 style="color:slategrey">UserId</h3></label>
         <input type="text" class="form-control" th:field="*{email}">
