@@ -3,7 +3,6 @@ package myCrud.Controllers;
 import myCrud.DAO.CustomerDAO;
 import myCrud.DAO.SellerDAO;
 import myCrud.Model.Person;
-import myCrud.Model.Seller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,14 +34,24 @@ public class HomeController {
        String emailFromForm = person.getEmail();
        String passFromForm = person.getPassword();
        Person sellerPerson = sellerdao.check(person, emailFromForm);
+       Person customerPerson = customerdao.check(person, emailFromForm);
 
        try{
-      if(person.getEmail().equals(sellerPerson.getEmail())) {
-          return "afterLog";
+      if(person.getEmail().equals(sellerPerson.getEmail()) ) {
+          return "sellerAfterLog";
       }
        }catch (Exception e){
            System.out.println("SellerPerson is null");
        }
-        return "seller/all";
+
+        try{
+            if(person.getEmail().equals(customerPerson.getEmail()) ) {
+                return "customerAfterLog";
+            }
+        }catch (Exception e){
+            System.out.println("SellerPerson is null");
+        }
+        return "home";
     }
+
 }

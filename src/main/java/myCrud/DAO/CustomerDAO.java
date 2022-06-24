@@ -1,6 +1,8 @@
 package myCrud.DAO;
 
 import myCrud.Model.Customer;
+import myCrud.Model.Person;
+import myCrud.Model.Seller;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -40,6 +42,11 @@ public class CustomerDAO {
     //delete
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM customer WHERE id=?", id);
+    }
+
+    //check
+    public Person check(Person customer, String email) {
+        return jdbcTemplate.query("SELECT * FROM customer WHERE email=?", new Object[]{ email}, new BeanPropertyRowMapper<>(Customer.class)).stream().findAny().orElse(null);
     }
 
 }
